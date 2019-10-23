@@ -44,9 +44,16 @@
       </div>      
     </div>
 
-    <button class="btn btn-primary btn-block mb-3" type="submit" [title]="titulo" (click)="entrarButton()">Entrar</button>
-    <button class="btn btn-primary btn-block mb-3" type="submit" [title]="titulo" (click)="entrar()">GetValue Email</button>
+    <button class="btn btn-primary btn-block mb-3" type="submit" [title]="titulo" (click)="entrarButton()">Outro Entrar</button>
+    <button class="btn btn-primary btn-block mb-3" type="submit" [title]="titulo" (click)="entrar()"[disabled]="ativar_spinner">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>      
+      Entrar
+    </button>
     <img src="../../../assets/img/buy-websites.jpg" />
+
+    <div class="alert alert-danger" *ngIf ="mensagem">
+      {{mensagem}}
+    </div>
 
     <div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
       Usuário autenticado

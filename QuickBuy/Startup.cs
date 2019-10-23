@@ -40,7 +40,7 @@ namespace QuickBuy
 
             //Adicionando o recurso de injeção de dependencias Informar
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
-
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
             // Em produção, os arquivos angulares serão exibidos neste diretório
             services.AddSpaStaticFiles(configuration =>

@@ -3,7 +3,7 @@ import { Component } from "@angular/core"
 //usando o decorator component
 @Component({
     selector: "app-produto",
-    template:"<html><body>{{ obterNome() }}}</body></html>"
+    template:"<html><body>{{ obterNome() }}</body></html>"
 
 })
 export class ProdutoComponent {
