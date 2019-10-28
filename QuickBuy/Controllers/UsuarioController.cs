@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuickBuy.Dominio.Contratos;
 using QuickBuy.Dominio.Entidades;
+using QuickBuy.Repositorio.Repositorios;
 using System;
 
 namespace QuickBuy.Controllers
@@ -8,7 +9,7 @@ namespace QuickBuy.Controllers
     [Route("api/[Controller]")]
     public class UsuarioController : Controller
     {
-        private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;       
         public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
@@ -19,11 +20,16 @@ namespace QuickBuy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post([FromBody] Usuario usuario)
         {
             try
             {
-                return Ok();
+                var usuarioCadastrado = _usuarioRepositorio.Obter(usuario.Email);
+                if (usuarioCadastrado != null)
+                    return BadRequest("Usuário já cadastrado no sistema");
+
+                _usuarioRepositorio.Adicionar(usuario);
+                return Ok(usuarioCadastrado);
             }
             catch(Exception ex)
             {

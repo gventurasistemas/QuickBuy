@@ -22,10 +22,13 @@ export class NavMenuComponent {
         this.isExpanded = !this.isExpanded;
     }
     public usuarioLogado(): boolean {
-        return this.usuarioServico.usuario_autenticado();          
+        return this.usuarioServico.usuario_autenticado();
     }
     sair() {
         this.usuarioServico.limparSessao(); 
         this.router.navigate(['/']);
+    }
+    get usuario() {
+        return this.usuarioServico.usuario;
     }
 }

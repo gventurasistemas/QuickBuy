@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +31,9 @@ namespace QuickBuy
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //Adicionado
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Conexão com o Banco de dados
             var connectionString = Configuration.GetConnectionString("QuickBuyDB");//Busca o QuickBuyDB dentro do arquivo json
